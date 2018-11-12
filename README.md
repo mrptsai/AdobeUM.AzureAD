@@ -2,6 +2,13 @@
 
 Adopted script originally created by zincarla (https://github.com/zincarla/AdobeUMInterface) and converted it to a PowerShell Module for Azure Automation, providing cmdlets to communicate with the Adobe User Management API.
 
+Available from PowerShell Gallery:</br>
+https://www.powershellgallery.com/packages/AdobeUM
+
+## Example Runbook </br>
+See the following link for an example Runbook the Syncs an Azure AD Group with an Adobe Group:</br>
+https://github.com/mrptsai/AdobeUMRunbook
+
 ## Functions
 
 ### Import-PFXCert
