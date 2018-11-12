@@ -529,18 +529,13 @@ Create JWT
 ```
 
 ## Prerequisites
-
 - Azure Tenant 
 - Azure Automation Accouint
-- Azure AD Module 
-- AdobeUM Module
 
 ## Versioning
-
 [Github](http://github.com/) for version control.
 
 ## Authors
-
 * **Paul Towler** - *Initial work* - [AdobeUM](https://github.com/mrptsai/AdobeUM)
 
 See also the list of [contributors](https://github.com/mrptsai/AdobeUM/graphs/contributors) who participated in this project.
