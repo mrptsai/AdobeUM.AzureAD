@@ -530,7 +530,7 @@ Create JWT
 
 ## Prerequisites
 - Azure Tenant 
-- Azure Automation Accouint
+- Azure Automation Account
 
 ## Versioning
 [Github](http://github.com/) for version control.
