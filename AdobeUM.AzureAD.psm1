@@ -302,10 +302,11 @@ function Get-AdobeUsers
 
     Param
     (
-        [string]$UM_Server="https://usermanagement.adobe.io/v2/usermanagement/", 
+        [string]$UM_Server = "https://usermanagement.adobe.io/v2/usermanagement/", 
         
         [ValidateScript({$null -ne $_.Token})]
-        [Parameter(Mandatory=$true)]$ClientInformation
+        [Parameter(Mandatory=$true)]
+        $ClientInformation
     )
 
     #Store the results here
@@ -338,7 +339,7 @@ function Get-AdobeUsers
         $Page++;
         
         # Different API endpoints have different ways of telling you if you are done.
-        if ($QueryResponse.lastPage -eq $true -or $null -ne $QueryResponse -or $QueryResponse.Length -eq 0)
+        if ($QueryResponse.lastPage -eq $true -or $null -eq $QueryResponse -or $QueryResponse.Length -eq 0)
         {
             break; 
         }
@@ -374,12 +375,13 @@ function Get-AdobeGroups
 
     Param
     (
-        [string]$UM_Server="https://usermanagement.adobe.io/v2/usermanagement/",
+        [string]$UM_Server = "https://usermanagement.adobe.io/v2/usermanagement/",
         
-        $GroupID=$null,
+        $GroupID = $null,
         
         [ValidateScript({$null -ne $_.Token})]
-        [Parameter(Mandatory=$true)]$ClientInformation
+        [Parameter(Mandatory=$true)]
+        $ClientInformation
     )
 
     #See https://www.adobe.io/apis/cloudplatform/usermanagement/docs/samples/samplequery.html
@@ -411,7 +413,7 @@ function Get-AdobeGroups
             }
             $Results += $QueryResponse
             $Page++;
-            if ($QueryResponse.lastPage -eq $true -or $null -ne $QueryResponse -or $QueryResponse.Length -eq 0)
+            if ($QueryResponse.lastPage -eq $true -or $null -eq $QueryResponse -or $QueryResponse.Length -eq 0)
             {
                 break
             }
@@ -448,7 +450,7 @@ function Get-AdobeGroupMembers
 
     Param
     (
-        [string]$UM_Server="https://usermanagement.adobe.io/v2/usermanagement/",
+        [string]$UM_Server = "https://usermanagement.adobe.io/v2/usermanagement/",
 
         [ValidateScript({$null -ne $_.Token})]
         [Parameter(Mandatory=$true)]
@@ -462,7 +464,7 @@ function Get-AdobeGroupMembers
     $Results = @()
 
     $URIPrefix = "$UM_SERVER$($ClientInformation.OrgID)/user-groups/$GroupID/users?page="
-    $Page =0
+    $Page = 0
 
     # Request headers
     $Headers = @{Accept="application/json";
@@ -865,7 +867,8 @@ function Expand-JWTInformation
     Param
     (
         [ValidateScript({$_.Split(".").Length -eq 3})]
-        [Parameter(Mandatory=$true)][string]$JWTObject,
+        [Parameter(Mandatory=$true)]
+        [string]$JWTObject,
 
         $SigningCert
     )
@@ -876,10 +879,10 @@ function Expand-JWTInformation
 
     $Signature = [System.Convert]::FromBase64String((ConvertFrom-Base64URLToBase64 -String $JWTParts[2]))
 
-    $Valid= $null
+    $Valid = $null
     if ($SigningCert -and $Header.alg.StartsWith("RS"))
     {
-        $HAN=$null
+        $HAN = $null
         if ($Header.alg.EndsWith("256"))
         {
             $HAN = [System.Security.Cryptography.HashAlgorithmName]::SHA256
@@ -972,7 +975,8 @@ function New-SyncADGroupRequest
         [string]$AdobeGroupID, 
 
         [ValidateScript({$null -ne $_.Token})]
-        [Parameter(Mandatory=$true)]$ClientInformation
+        [Parameter(Mandatory=$true)]
+        $ClientInformation
     )
 
     # Grab a list of all adobe groups
@@ -1013,12 +1017,15 @@ function New-SyncADGroupRequest
     }
     
     # Find excess members and create requests to remove them
-    foreach ($Member in $Members)
+    if ($ADUsers)
     {
-        if ($null -ne $ADUsers -or $Member -notin $ADUsers.mail)
+        foreach ($Member in $Members)
         {
-            #Need to remove
-            $Request += New-RemoveUserFromGroupRequest -UserName $Member -GroupName $AdobeGroupInfo.name
+            if ($Member -notin $ADUsers.mail)
+            {
+                #Need to remove
+                $Request += New-RemoveUserFromGroupRequest -UserName $Member -GroupName $AdobeGroupInfo.name
+            }
         }
     }
     
