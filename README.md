@@ -1,9 +1,9 @@
-# AdobeUM
+# AdobeUM.AzureAD
 
 Adopted script originally created by zincarla (https://github.com/zincarla/AdobeUMInterface) and converted it to a PowerShell Module for Azure Automation, providing cmdlets to communicate with the Adobe User Management API.
 
 Available from PowerShell Gallery:</br>
-https://www.powershellgallery.com/packages/AdobeUM
+https://www.powershellgallery.com/packages/AdobeUM.AzureAD
 
 ## Example Runbook </br>
 See the following link for an example Runbook the Syncs an Azure AD Group with an Adobe Group:</br>
@@ -536,6 +536,6 @@ Create JWT
 [Github](http://github.com/) for version control.
 
 ## Authors
-* **Paul Towler** - *Initial work* - [AdobeUM](https://github.com/mrptsai/AdobeUM)
+* **Paul Towler** - *Initial work* - [AdobeUM.AzureAD](https://github.com/mrptsai/AdobeUM.AzureAD)
 
-See also the list of [contributors](https://github.com/mrptsai/AdobeUM/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/mrptsai/AdobeUM.AzureAD/graphs/contributors) who participated in this project.
