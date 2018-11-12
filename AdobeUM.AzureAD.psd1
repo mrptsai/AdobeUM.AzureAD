@@ -12,7 +12,7 @@
     RootModule = '.\AdobeUM.AzureAD.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '1.0.1'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -135,6 +135,9 @@
     ## 1.0.0
     * Created module version of PowerShell Framework initially created by zincarla https://github.com/zincarla/AdobeUMInterface
     * Added the cability to create FederationID users
+
+    ## 1.0.1
+    * Fixed issue with some conditions using the wrong expression.
     '
     
         } # End of PSData hashtable
